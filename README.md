@@ -80,6 +80,34 @@
 Development mode:
 `mvn spring-boot:run -Dspring-boot.run.profiles=dev`
 
-# Swagger API Documentation
+# TECH_STACK.md
 
-`http://localhost:8080/swagger-ui/index.html`
+## Components & Rationale
+
+- **Java 17 + Spring Boot 3.2.x**  
+  Mature ecosystem, strong productivity, excellent telemetry & ecosystem.
+
+- **Postgres (15)**  
+  Strong transactional guarantees, extensions, good for relational data (orders, assignments). Use unique constraints & transactions for assignment integrity.
+
+- **Kafka (Apache Kafka)**  
+  Durable event bus, ordering per key, scalable ingestion, supports stream processing.
+
+- **Stream processing: Flink / Kafka Streams**  
+  Stateful processing, enrichment, dedupe, low-latency routing to Redis and TSDB.
+
+- **Redis (Cluster)**  
+  The latest location store uses GEO commands for nearest-driver lookups.
+
+- **TSDB / OLAP: ClickHouse / TimescaleDB**  
+  ClickHouse for high-volume analytics; TimescaleDB for SQL-time-series when relational joins are needed.
+
+- **Observability: Prometheus + Grafana OR Datadog**  
+  Monitor lag, latency, errors, and traces.
+
+- **Deployment: Kubernetes**  
+  Horizontal scaling, rolling updates, pod autoscaling.
+
+## Why these choices?
+- Each choice isolates the primary requirement: speed (Redis), durability & replay (Kafka), transactional correctness (Postgres), analytics (ClickHouse).
+
