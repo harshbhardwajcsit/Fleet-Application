@@ -1,0 +1,101 @@
+# ===========================================
+# 🚀 JAVA / SPRING BOOT PROJECT GITIGNORE
+# ===========================================
+
+HELP.md
+target/
+out/
+**/target/
+**/build/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# ===========================================
+# 🌱 MAVEN
+# ===========================================
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+
+# ===========================================
+# 🛠️ IDE SPECIFIC
+# ===========================================
+# STS
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+# ===========================================
+# 📦 OPERATING SYSTEM FILES
+# ===========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ===========================================
+# 📝 LOGS
+# ===========================================
+logs/
+*.log
+*.log.*
+
+# Spring Boot specific
+spring.log
+
+# ===========================================
+# 🔐 SENSITIVE FILES
+# ===========================================
+*.env
+.env.*
+*.local.properties
+*.secret
+*.key
+*.pem
+*.p12
+
+# ===========================================
+# 🗃️ DATABASE / CACHE
+# ===========================================
+# Redis dump
+dump.rdb
+appendonly.aof
+
+# H2 DB
+*.h2.db
+*.mv.db
+*.trace.db
+
+# Flyway / Liquibase temp
+flyway.co
