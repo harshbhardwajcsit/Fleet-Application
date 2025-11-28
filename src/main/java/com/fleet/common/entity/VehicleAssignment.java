@@ -35,7 +35,7 @@ public class VehicleAssignment {
     @Column(name = "assigned_at", nullable = false)
     private Instant assignedAt;
 
-    @Column(name = "assigned_date", nullable = false)
+    @Column(name = "assigned_date", nullable = false, columnDefinition = "DATE")
     private LocalDate assignedDate;
 
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -43,10 +43,4 @@ public class VehicleAssignment {
 
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
-
-    // Utility method to set assignedDate automatically in UTC
-    public void setAssignedAt(Instant assignedAt) {
-        this.assignedAt = assignedAt;
-        this.assignedDate = assignedAt.atZone(ZoneOffset.UTC).toLocalDate();
-    }
 }

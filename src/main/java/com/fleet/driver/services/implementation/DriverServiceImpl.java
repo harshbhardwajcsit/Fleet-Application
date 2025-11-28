@@ -32,6 +32,7 @@ import com.fleet.common.repository.ShiftRepository;
 import com.fleet.common.repository.VehicleAssignmentRepository;
 import com.fleet.driver.services.DriverService;
 import com.fleet.driver.services.TrackingService;
+import com.fleet.driver.utils.DriverUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -112,6 +113,9 @@ public class DriverServiceImpl implements
                 .findByDriverIdAndAssignedDate(driverId, today);
 
         shift.setActualEndTime(LocalTime.now(ZoneOffset.UTC));
+        shift.setTotalWorkingHours(
+                DriverUtil.getTotalWorkingHours(shift.getActualStartTime(), LocalTime.now(ZoneOffset.UTC)));
+
         shiftRepository.save(shift);
 
         // Remove driver from all cache buckets when shift ends

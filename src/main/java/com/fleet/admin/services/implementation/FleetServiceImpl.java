@@ -159,17 +159,6 @@ public class FleetServiceImpl implements FleetService {
         @Override
         public ResponseEntity<ApiResponse<VehicleAssignmentDto>> assignVehicle(CreateVehicleAssignmentRequest request) {
 
-                if (assignmentRepository.existsByDriverIdAndAssignedDate(request.getDriverId(),
-                                request.getAssignedDate())) {
-                        throw new ConflictException(
-                                        FleetConstants.DRIVER_ASSIGNMENT_CONFLICT + request.getAssignedDate());
-                }
-                if (assignmentRepository.existsByVehicleIdAndAssignedDate(request.getVehicleId(),
-                                request.getAssignedDate())) {
-                        throw new ConflictException(
-                                        FleetConstants.VEHICLE_ASSIGNMENT_CONFLICT + request.getAssignedDate());
-                }
-
                 // insert inside transaction
                 try {
                         VehicleAssignment saved = createAssignmentTransactional(request, request.getAssignedDate());
@@ -213,11 +202,6 @@ public class FleetServiceImpl implements FleetService {
                 assignment.setAssignedAt(now);
                 assignment.setCreatedAt(now);
                 assignment.setUpdatedAt(now);
-
-                System.out.println("### DRIVER = " + driver.getId());
-                System.out.println("### VEHICLE = " + vehicle.getId());
-                System.out.println("### ADMIN = " + admin.getId());
-                System.out.println("### DATE = " + assignedDate);
 
                 // save & flush to catch unique constraint violations
                 return assignmentRepository.saveAndFlush(assignment);
